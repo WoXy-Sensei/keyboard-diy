@@ -1,5 +1,7 @@
 # Keyboard DIY — Multi-Mode Macro Keypad
 
+![image](/images/image.png)
+
 This repository holds an Arduino sketch for a small multi-mode macro pad with an OLED, a rotary encoder and 9 buttons. It supports five modes (Basic, Media, Code, Custom and a small Dino game). The device uses USB HID to send keyboard and consumer/media control events to the host.
 
 ## Highlights
