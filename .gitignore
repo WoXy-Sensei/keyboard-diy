@@ -1,0 +1,18 @@
+# Arduino/PlatformIO
+.pio/
+build/
+*.pio
+/.vscode/
+.vs/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Compiled binaries
+*.hex
+*.elf
+*.bin
