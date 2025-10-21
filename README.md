@@ -20,17 +20,41 @@ This repository holds an Arduino sketch for a small multi-mode macro pad with an
 
 This sketch was written for a 32U4-based board (Arduino Pro Micro, Leonardo or similar) because it uses the native USB HID libraries.
 
-Pin usage (as defined in `main.ino`):
+### Wiring Diagram
 
-- Buttons (9): pins 4, 5, 6, 7, 8, 9, 10, 15, A1
-- Rotary encoder CLK: pin 14
-- Rotary encoder DT: pin 16
-- Rotary encoder SW (push): A0
-- OLED: I2C (SDA/SCL) at 0x3C — connect to board's SDA/SCL pins
+![Wiring Diagram](images/diagram.png)
 
-Notes:
-- All button pins are used with INPUT_PULLUP so connect buttons to ground when pressed.
-- Encoder pins use INPUT_PULLUP; the code expects a standard mechanical rotary encoder (Gray code quadrature).
+```
+OLED Display (SSD1306 128x64 I2C):
+├─ VCC  → 5V (or 3.3V depending on module)
+├─ GND  → GND
+├─ SDA  → Pin 2 (I2C Data)
+└─ SCL  → Pin 3 (I2C Clock)
+
+9 Buttons (active-low with internal pull-up):
+├─ Button 1  → Pin 4  → GND
+├─ Button 2  → Pin 5  → GND
+├─ Button 3  → Pin 6  → GND
+├─ Button 4  → Pin 7  → GND
+├─ Button 5  → Pin 8  → GND
+├─ Button 6  → Pin 9  → GND
+├─ Button 7  → Pin 10 → GND
+├─ Button 8  → Pin 15 → GND
+└─ Button 9  → Pin A1 → GND
+
+Rotary Encoder (with push button):
+├─ CLK → Pin 14
+├─ DT  → Pin 16
+├─ SW  → Pin A0 (push button)
+├─ +   → 5V
+└─ GND → GND
+```
+
+### Notes
+
+- **OLED**: I2C address is 0x3C (default for most SSD1306 modules). Connect SDA/SCL to your board's I2C pins (on Pro Micro: Pin 2 = SDA, Pin 3 = SCL).
+- **Buttons**: All button pins are configured with `INPUT_PULLUP`, so wire one side of each button to the specified pin and the other side to GND. Pressing a button pulls the pin LOW.
+- **Encoder**: Uses `INPUT_PULLUP` on CLK, DT, and SW. The code expects a standard mechanical rotary encoder with quadrature output (Gray code). The SW pin is the encoder's push button.
 
 ## Dependencies (Arduino Libraries)
 
